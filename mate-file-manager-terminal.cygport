@@ -1,0 +1,21 @@
+GIT_URI="git://github.com/NiceandGently/caja-terminal.git"
+inherit python git
+
+NAME="mate-file-manager-terminal"
+VERSION=0.7
+RELEASE=1
+CATEGORY="MATE"
+SUMMARY="Embedded terminal for Caja file manager"
+DESCRIPTION="Caja Terminal is a terminal embedded in Caja, the MATE file
+browser. It is always open in the current folder, and follows the folder
+navigation (the 'cd' command is automatically executed when you move to
+another folder)."
+HOMEPAGE="https://github.com/NiceandGently/caja-terminal"
+
+src_compile() { :; }
+
+src_install() {
+	cd ${S}
+	./install.sh -p ${D} || error "install failed"
+	python_optimize /usr/lib/caja/extensions-2.0/python
+}
